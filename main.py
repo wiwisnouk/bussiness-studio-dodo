@@ -5,6 +5,6 @@ app = FastAPI()
 
 app.include_router(HomePage.router)
 
-#<button class="product-button" onclick="addToCart('{{ product.id }}')">
-                #Выбрать
-            #</button>
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=False)
