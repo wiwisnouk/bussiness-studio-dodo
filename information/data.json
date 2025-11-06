@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "title": "Ветчина и Грибы",
+    "price": 369,
+    "description": "Ветчина, шампиньоны, увеличенная порция моцареллы, фирменный томатный соус",
+    "image_url": "https://media.dodostatic.net/image/r:292x292/0198c659b357718f9c77ad0dc392dadf.jpg",
+    "image_url_avif": "https://media.dodostatic.net/image/r:233x233/0198c659b357718f9c77ad0dc392dadf.jpg",
+    "image_url_webp": "https://media.dodostatic.net/image/r:233x233/0198c659b357718f9c77ad0dc392dadf.jpg"
+  },
+  {
+    "id": 2,
+    "title": "Аррива!",
+    "price": 469,
+    "description": "Цыпленок, острые колбаски чоризо, соус бургер, сладкий перец, красный лук, томаты, моцарелла, соус ранч, чеснок",
+    "image_url": "https://media.dodostatic.net/image/r:292x292/0198bf2e5d2973a4bf5ec61161496f91.jpg",
+    "image_url_avif": "https://media.dodostatic.net/image/r:233x233/0198bf2e5d2973a4bf5ec61161496f91.avif",
+    "image_url_webp": "https://media.dodostatic.net/image/r:233x233/0198bf2e5d2973a4bf5ec61161496f91.webp"
+  },
+  {
+    "id": 3,
+    "title": "Креветки со сладким чили",
+    "price": 509,
+    "description": "Креветки, ананасы, соус сладкий чили, сладкий перец, моцарелла, фирменный соус альфредо",
+    "image_url": "https://media.dodostatic.net/image/r:292x292/0198bf5147f27780a3290a82692e7a36.jpg",
+    "image_url_avif": "https://media.dodostatic.net/image/r:233x233/0198bf5147f27780a3290a82692e7a36.avif",
+    "image_url_webp": "https://media.dodostatic.net/image/r:233x233/0198bf5147f27780a3290a82692e7a36.webp"
+  },
+  {
+    "id": 4,
+    "title": "Бефстроганов",
+    "price": 549,
+    "description": "Пряная говядина, шампиньоны, ароматный грибной соус, маринованные огурчики, моцарелла, красный лук",
+    "image_url": "https://media.dodostatic.net/image/r:292x292/0198bf5205fb78abb9ad479b6e47304c.jpg",
+    "image_url_avif": "https://media.dodostatic.net/image/r:233x233/0198bf5205fb78abb9ad479b6e47304c.avif",
+    "image_url_webp": "https://media.dodostatic.net/image/r:233x233/0198bf5205fb78abb9ad479b6e47304c.webp"
+  }
+]

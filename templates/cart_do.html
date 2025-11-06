@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Страница с оплатой</title>
+</head>
+<body style="padding-left: 200px;">
+
+<div class="logo_dodo" style="display: flex; align-items: center; gap: 10px;">
+
+    <h1 style="font-family: Inter, system-ui, sans-serif; font-size: 30px; line-height: 28px; font-weight: 700;">
+        <img
+                src="https://png.klev.club/uploads/posts/2024-04/png-klev-club-6kxo-p-logotip-dodo-pitstsa-png-12.png"
+                alt="Логотип Додо"
+                width="50"
+                style="vertical-align: middle;"
+        >
+        Додо Пицца
+    </h1>
+
+    <p style="font-family: Inter, system-ui, sans-serif; font-size: 12px; color: #666; margin-top: 5px; position: relative; left: -190px">
+        <br><br><br><br>Сеть №1 в России<br>
+    </p>
+
+    <p style="font-family: Inter, system-ui, sans-serif; font-size: 12px; color: #666; margin-top: 5px; color: #FF5D01; position: relative; left: -303px">
+        <br><br><br><br><br><br>по &nbsp;количеству пиццерий
+    </p>
+
+</div>
+
+<h2 style="font-family: Inter, system-ui, sans-serif; font-size: 24px; line-height: 28px; font-weight: 700;">
+    Заказ на доставку
+</h2>
+
+    <p style="font-family: Inter, system-ui, sans-serif; font-size: 18px; line-height: 28px; font-weight: 400;">
+        Ваша пицца с айди номер {{ pizza_id }}
+    </p>
+
+    <p style="font-family: Inter, system-ui, sans-serif; font-size: 14px; line-height: 28px; font-weight: 400;">
+        Имя <input type="text" style="width: 200px; height: 20px; position: relative; right: -120px">
+    </p>
+
+    <p style="font-family: Inter, system-ui, sans-serif; font-size: 14px; line-height: 28px; font-weight: 400;">
+        Номер Телефона <input data-testid="checkout-form__phone-input" type="tel" placeholder="+7 999 999-99-99" disabled="" required="" id="phn-input" class="input" data-error="false" data-validation="false" data-clear="false" value="+7 (987) 999-99-99" style="width: 200px; height: 20px; position: relative; right: -37px; color: #333333">
+    </p>
+
+    <p style="font-family: Inter, system-ui, sans-serif; font-size: 14px; line-height: 28px; font-weight: 400;">
+        Адрес Доставки &nbsp &nbsp &nbsp<input data-testid="checkout-form__delivery-input" type="text" placeholder="Гашека 7" disabled="" required="" id="location-input" class="input" data-error="false" data-validation="false" data-clear="false" value="Центральный Университет" style="width: 300px; height: 30px; position: relative; right: -26px; color: #333333">
+    </p>
+
+</body>
+</html>

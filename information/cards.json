@@ -1,0 +1,47 @@
+[
+            {
+                "id": 1,
+                "title": "Додстер",
+                "image": "https://media.dodostatic.net/image/r:584x584/01980cb92528769295aeb186fb501f8e.webp",
+                "price": 249,
+                "delivery": "Бесплатная доставка",
+                "add_url": "/api/add_to_cart/1",
+                "remove_url": "/api/remove_from_cart/1"
+            },
+            {
+                "id": 2,
+                "title": "Сырный Стартер",
+                "image": "https://media.dodostatic.net/image/r:1875x1875/01980e9041a377569779e41755a81ad1.webp",
+                "price": 249,
+                "delivery": "Бесплатная доставка",
+                "add_url": "/api/add_to_cart/2",
+                "remove_url": "/api/remove_from_cart/2"
+            },
+            {
+                "id": 3,
+                "title": "Маргарита",
+                "image": "https://cdn.dodostatic.net/static/Img/Products/6e8c0d018a9c4c0e8c0e9c4c0e9c4c0e_292x292.webp",
+                "price": 549,
+                "delivery": "Бесплатная доставка",
+                "add_url": "/api/add_to_cart/3",
+                "remove_url": "/api/remove_from_cart/3"
+            },
+            {
+                "id": 4,
+                "title": "Чизбургер-пицца",
+                "image": "https://media.dodostatic.net/image/r:233x233/0198bf2e5d2973a4bf5ec61161496f91.webp",
+                "price": 699,
+                "delivery": "Бесплатная доставка",
+                "add_url": "/api/add_to_cart/4",
+                "remove_url": "/api/remove_from_cart/4"
+            },
+            {
+                "id": 5,
+                "title": "Ветчина и грибы",
+                "image": "https://cdn.dodostatic.net/static/Img/Products/6e8c0d018a9c4c0e8c0e9c4c0e9c4c0e_292x292.webp",
+                "price": 579,
+                "delivery": "Бесплатная доставка",
+                "add_url": "/api/add_to_cart/5",
+                "remove_url": "/api/remove_from_cart/5"
+            }
+]

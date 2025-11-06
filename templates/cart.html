@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Страница с оплатой</title>
+    <style>
+        /* Увеличиваем базовый размер страницы в 1.15 раза */
+        html {
+            font-size: 115%;
+            transform: scale(1.15);
+            transform-origin: 0 0;
+            width: 86.9565%; /* 100% / 1.15 */
+        }
+
+        body {
+            font-family: Inter, system-ui, sans-serif;
+            margin: 0;
+            padding: 23px; /* 20px * 1.15 */
+            display: flex;
+            justify-content: space-between;
+            gap: 46px; /* 40px * 1.15 */
+        }
+
+        .main-content {
+            flex: 1;
+            max-width: 690px; /* 600px * 1.15 */
+            margin-left: 115px; /* 100px * 1.15 */
+        }
+
+        .order-summary {
+            width: 287.5px; /* 250px * 1.15 */
+            background-color: #f9f9f9;
+            border-radius: 13.8px; /* 12px * 1.15 */
+            padding: 17.25px; /* 15px * 1.15 */
+            box-shadow: 0 4.6px 13.8px rgba(0, 0, 0, 0.1); /* 4px * 1.15, 12px * 1.15 */
+            display: flex;
+            flex-direction: column;
+            margin-right: 23px; /* 20px * 1.15 */
+        }
+
+        .order-title {
+            font-size: 20.7px; /* 18px * 1.15 */
+            font-weight: 700;
+            margin-bottom: 17.25px; /* 15px * 1.15 */
+            color: #333;
+        }
+
+        .order-details {
+            margin-bottom: 10px; /* 20px * 1.15 */
+        }
+
+        .order-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 11.5px; /* 10px * 1.15 */
+            padding-bottom: 11.5px; /* 10px * 1.15 */
+            border-bottom: 1px solid #eee;
+            font-size: 16.1px; /* 14px * 1.15 */
+        }
+
+        .order-row.total {
+            font-weight: 700;
+            border-bottom: none;
+            font-size: 18.4px; /* 16px * 1.15 */
+            margin-top: auto;
+            padding-top: 17.25px; /* 15px * 1.15 */
+            border-top: 2px solid #ddd;
+        }
+
+        .cards-container {
+            margin-bottom: 10px; /* 20px * 1.15 */
+        }
+
+        .cards-title {
+            font-size: 18.4px; /* 16px * 1.15 */
+            font-weight: 600;
+            margin-bottom: 13.8px; /* 12px * 1.15 */
+        }
+
+        .cards-carousel {
+            position: relative;
+            overflow: hidden;
+            height: 253px; /* 220px * 1.15 */
+        }
+
+        .cards-wrapper {
+            display: flex;
+            transition: transform 0.3s ease;
+        }
+
+        .card {
+            min-width: calc(42%); /* Уменьшили ширину на 30px */
+            background: white;
+            border-radius: 9.2px; /* 8px * 1.15 */
+            padding: 11.5px; /* 10px * 1.15 */
+            box-shadow: 0 2.3px 6.9px rgba(0, 0, 0, 0.1); /* 2px * 1.15, 6px * 1.15 */
+            position: relative;
+            height: 218.5px; /* 190px * 1.15 */
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-image {
+            width: 100%;
+            height: 115px; /* 100px * 1.15 */
+            object-fit: cover;
+            border-radius: 6.9px; /* 6px * 1.15 */
+            margin-bottom: 6.9px; /* 6px * 1.15 */
+        }
+
+        .card-title {
+            font-weight: 600;
+            margin-bottom: 4.6px; /* 4px * 1.15 */
+            font-size: 14.95px; /* 13px * 1.15 */
+        }
+
+        .card-price {
+            color: #FF5D01;
+            font-weight: 600;
+            margin-bottom: 3.45px; /* 3px * 1.15 */
+            font-size: 14.95px; /* 13px * 1.15 */
+        }
+
+        .card-delivery {
+            font-size: 12.65px; /* 11px * 1.15 */
+            color: #666;
+            margin-bottom: 9.2px; /* 8px * 1.15 */
+        }
+
+        .add-button {
+            position: absolute;
+            bottom: 11.5px; /* 10px * 1.15 */
+            right: 11.5px; /* 10px * 1.15 */
+            background-color: #FF5D01;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 32.2px; /* 28px * 1.15 */
+            height: 32.2px; /* 28px * 1.15 */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 16.1px; /* 14px * 1.15 */
+            font-weight: bold;
+        }
+
+        .add-button:hover {
+            background-color: #e65100;
+        }
+
+        .remove-button {
+            position: absolute;
+            bottom: 11.5px; /* 10px * 1.15 */
+            right: 55.2px; /* 48px * 1.15 */
+            background-color: #666;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 23px; /* 20px * 1.15 */
+            height: 23px; /* 20px * 1.15 */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 16.1px; /* 14px * 1.15 */
+            font-weight: bold;
+        }
+
+        .remove-button:hover {
+            background-color: #555;
+        }
+
+        .counter {
+            position: absolute;
+            bottom: 11.5px; /* 10px * 1.15 */
+            right: 88px; /* Сдвинули вправо из-за кнопки минус */
+            background-color: #FF5D01;
+            color: white;
+            border-radius: 50%;
+            width: 23px; /* 20px * 1.15 */
+            height: 23px; /* 20px * 1.15 */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11.5px; /* 10px * 1.15 */
+            font-weight: bold;
+        }
+
+        .carousel-controls {
+            display: flex;
+            justify-content: center;
+            margin-top: 11.5px; /* 10px * 1.15 */
+        }
+
+        .carousel-dot {
+            width: 6.9px; /* 6px * 1.15 */
+            height: 6.9px; /* 6px * 1.15 */
+            border-radius: 50%;
+            background-color: #ddd;
+            margin: 0 4.6px; /* 4px * 1.15 */
+            cursor: pointer;
+        }
+
+        .carousel-dot.active {
+            background-color: #FF5D01;
+        }
+
+        .logo_dodo {
+            display: flex;
+            align-items: center;
+            gap: 11.5px; /* 10px * 1.15 */
+            margin-bottom: 23px; /* 20px * 1.15 */
+            position: relative;
+        }
+
+        h1 {
+            font-size: 34.5px; /* 30px * 1.15 */
+            line-height: 32.2px; /* 28px * 1.15 */
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .network-info {
+            font-size: 13.8px; /* 12px * 1.15 */
+            color: #666;
+            position: absolute;
+            top: -40px; /* Позиционируем над логотипом */
+            left: 60px; /* Сдвигаем вправо от логотипа */
+            white-space: nowrap;
+        }
+
+        .network-highlight {
+            color: #FF5D01;
+            position: absolute;
+            top: -20px; /* Позиционируем под первой строкой */
+            left: 60px; /* Сдвигаем вправо от логотипа */
+            white-space: nowrap;
+        }
+
+        h2 {
+            font-size: 27.6px; /* 24px * 1.15 */
+            line-height: 32.2px; /* 28px * 1.15 */
+            font-weight: 700;
+            margin-bottom: 23px; /* 20px * 1.15 */
+        }
+
+        .form-group {
+            margin-bottom: 23px; /* 20px * 1.15 */
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5.75px; /* 5px * 1.15 */
+            font-size: 16.1px; /* 14px * 1.15 */
+        }
+
+        input {
+            width: 100%;
+            padding: 11.5px; /* 10px * 1.15 */
+            border: 1px solid #ddd;
+            border-radius: 6.9px; /* 6px * 1.15 */
+            font-size: 16.1px; /* 14px * 1.15 */
+            box-sizing: border-box;
+        }
+
+        .order-button {
+            background-color: #FF5D01;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 15px 1px;
+            text-align: center;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 20px;
+            transition: background-color 0.3s;
+        }
+
+        .order-button:hover {
+            background-color: #e65100;
+        }
+
+        .order-button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="main-content">
+        <div class="logo_dodo" style="display: flex; align-items: center; gap: 10px;">
+
+            <h1 style="font-family: Inter, system-ui, sans-serif; font-size: 30px; line-height: 28px; font-weight: 700;">
+                <img
+                        src="https://png.klev.club/uploads/posts/2024-04/png-klev-club-6kxo-p-logotip-dodo-pitstsa-png-12.png"
+                        alt="Логотип Додо"
+                        width="50"
+                        style="vertical-align: middle;"
+                >
+                Додо Пицца
+            </h1>
+
+            <p style="font-family: Inter, system-ui, sans-serif; font-size: 12px; color: #666; margin-top: 5px; position: relative; left: -190px">
+                <br><br><br><br>Сеть №1 в России<br>
+            </p>
+
+            <p style="font-family: Inter, system-ui, sans-serif; font-size: 12px; color: #666; margin-top: 5px; color: #FF5D01; position: relative; left: -303px">
+                <br><br><br><br><br><br>по &nbsp;количеству пиццерий
+            </p>
+        </div>
+
+        <h2>Заказ на доставку</h2>
+
+        <p>Ваша пицца с айди номер {{ pizza_id }}</p>
+
+            <div class="form-group">
+                <label>Имя</label>
+                <input type="text" name="username" id="username">
+            </div>
+
+            <div class="form-group">
+                <label>Номер Телефона</label>
+                <input type="tel" placeholder="+7 999 999-99-99" value="+7 (987) 999-99-99">
+            </div>
+
+            <div class="form-group">
+                <label>Адрес Доставки</label>
+                <input type="text" placeholder="Гашека 7" value="Центральный Университет">
+            </div>
+    </div>
+
+    <div class="order-summary">
+        <div class="order-title">Состав заказа</div>
+
+        <div class="order-details">
+            <!-- Основная пицца - фиксированная -->
+            <div class="order-row">
+                <span>{{ main_pizza.title }}</span>
+                <span>{{ main_pizza.price }} ₽</span>
+            </div>
+
+            <!-- Дополнительные товары будут добавляться здесь через JS -->
+            <div id="additional-items">
+                <!-- Динамически добавляемые товары -->
+            </div>
+
+            <div class="order-row">
+                <span>Стоимость доставки</span>
+                <span class="delivery-price">{{ cart_total.delivery_price }} ₽</span>
+            </div>
+        </div>
+
+        <div class="cards-container">
+            <div class="cards-title">Добавить к заказу</div>
+
+            <div class="cards-carousel">
+                <div class="cards-wrapper" id="cardsWrapper">
+                    <!-- Карточки будут добавлены через JavaScript -->
+                </div>
+            </div>
+
+            <div class="carousel-controls" id="carouselDots">
+                <!-- Точки для навигации будут добавлены через JavaScript -->
+            </div>
+        </div>
+
+        <div class="order-row total">
+            <span>Итого</span>
+            <span>799 ₽</span>
+        </div>
+
+        <!-- Кнопка заказать -->
+        <a
+                href="/home/{{ pizza_id }}/final?total={{ cart_total.final_total }}"
+                class="order-button"
+                id="orderButton"
+                onclick="this.href = this.href + '&username=' + encodeURIComponent(document.getElementById('username').value)"
+        >
+
+            Заказать!
+        </a>
+
+    </div>
+
+    <script>
+    const cards = [
+        {
+            id: 1,
+            title: "Додстер",
+            image: "https://media.dodostatic.net/image/r:584x584/01980cb92528769295aeb186fb501f8e.webp",
+            price: 249,
+            add_url: "/api/add_to_cart/1",
+            remove_url: "/api/remove_from_cart/1"
+        },
+        {
+            id: 2,
+            title: "Стартер",
+            image: "https://media.dodostatic.net/image/r:1875x1875/01980e9041a377569779e41755a81ad1.webp",
+            price: 249,
+            add_url: "/api/add_to_cart/2",
+            remove_url: "/api/remove_from_cart/2"
+        },
+        {
+            id: 3,
+            title: "Маргарита",
+            image: "https://cdn.dodostatic.net/static/Img/Products/6e8c0d018a9c4c0e8c0e9c4c0e9c4c0e_292x292.webp",
+            price: 549,
+            add_url: "/api/add_to_cart/3",
+            remove_url: "/api/remove_from_cart/3"
+        },
+        {
+            id: 4,
+            title: "Чизбургер-пицца",
+            image: "https://media.dodostatic.net/image/r:233x233/0198bf2e5d2973a4bf5ec61161496f91.webp",
+            price: 699,
+            add_url: "/api/add_to_cart/4",
+            remove_url: "/api/remove_from_cart/4"
+        },
+        {
+            id: 5,
+            title: "Ветчина и грибы",
+            image: "https://cdn.dodostatic.net/static/Img/Products/6e8c0d018a9c4c0e8c0e9c4c0e9c4c0e_292x292.webp",
+            price: 579,
+            add_url: "/api/add_to_cart/5",
+            remove_url: "/api/remove_from_cart/5"
+        }
+        // ... другие карточки
+    ];
+
+    const counters = Array(cards.length).fill(0);
+    let currentCardIndex = 0;
+
+    // Функция для обновления корзины
+    function updateCartDisplay(cartData) {
+        console.log('=== ОБНОВЛЕНИЕ ИНТЕРФЕЙСА КОРЗИНЫ ===');
+        console.log('Данные от сервера:', cartData);
+
+        // Обновляем доставку
+        const deliveryElement = document.querySelector('.delivery-price');
+        if (deliveryElement) {
+            deliveryElement.textContent = `${cartData.delivery_price} ₽`;
+            console.log(`Доставка обновлена: ${cartData.delivery_price} ₽`);
+        }
+
+        // Обновляем итоговую сумму
+        const totalElement = document.querySelector('.order-row.total span:last-child');
+        if (totalElement) {
+            totalElement.textContent = `${cartData.final_total} ₽`;
+            console.log(`Итоговая сумма обновлена: ${cartData.final_total} ₽`);
+        }
+
+        // Обновляем отображение товаров
+        updateItemsDisplay(cartData.items);
+    }
+
+    // Функция для отображения товаров в корзине
+    function updateItemsDisplay(items) {
+        const additionalItemsContainer = document.getElementById('additional-items');
+        if (!additionalItemsContainer) {
+            console.log('Контейнер для дополнительных товаров не найден');
+            return;
+        }
+
+        // Очищаем только дополнительные товары (не основную пиццу)
+        additionalItemsContainer.innerHTML = '';
+
+        // Добавляем дополнительные товары
+        items.forEach((item, index) => {
+            if (index > 0) { // Пропускаем основную пиццу (первый элемент)
+                const itemElement = document.createElement('div');
+                itemElement.className = 'order-row additional-item';
+                itemElement.innerHTML = `
+                    <span>${item.name} × ${item.quantity}</span>
+                    <span>${item.total} ₽</span>
+                `;
+                additionalItemsContainer.appendChild(itemElement);
+                console.log(`Добавлен товар в корзину: ${item.name} - ${item.total} ₽`);
+            }
+        });
+    }
+
+    // Функция для получения текста доставки
+    async function getDeliveryTextWithMainPizza(productPrice, productId) {
+        try {
+            const response = await fetch(`/api/calculate_delivery_for_product/${productId}`);
+            if (response.ok) {
+                const data = await response.json();
+                console.log(`Расчет доставки для товара ${productId}:`, data);
+
+                if (data.delivery_with_product === 0) {
+                    return "🚚 Бесплатная доставка!";
+                } else {
+                    return `🚚 ${data.current_delivery} -> ${data.delivery_with_product}`;
+                }
+            }
+        } catch (error) {
+            console.error('Error calculating delivery:', error);
+        }
+        return "Рассчитать доставку";
+    }
+
+    // Функция для получения актуального состояния корзины
+    async function fetchCartTotal() {
+        try {
+            console.log('Запрос актуального состояния корзины...');
+            const response = await fetch('/api/cart_total');
+            if (response.ok) {
+                const cartData = await response.json();
+                updateCartDisplay(cartData);
+            } else {
+                console.error('Ошибка при запросе состояния корзины');
+            }
+        } catch (error) {
+            console.error('Error fetching cart total:', error);
+        }
+    }
+
+    // Функция для отправки запроса на добавление товара
+    async function addToCart(productId, addUrl) {
+        console.log(`=== ПОПЫТКА ДОБАВИТЬ ТОВАР ${productId} ===`);
+
+        try {
+            const response = await fetch(addUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    product_id: productId,
+                    quantity: 1
+                })
+            });
+
+            if (response.ok) {
+                const result = await response.json();
+                console.log('Товар успешно добавлен:', result);
+
+                // Обновляем счетчик
+                const index = cards.findIndex(card => card.id === productId);
+                if (index !== -1) {
+                    counters[index] = result.quantity;
+                    console.log(`Счетчик товара ${productId} обновлен: ${counters[index]}`);
+                }
+
+                updateCartDisplay(result.cart_total);
+                await renderCards();
+            } else {
+                console.error('Ошибка при добавлении товара');
+            }
+        } catch (error) {
+            console.error('Ошибка сети:', error);
+        }
+    }
+
+    // Функция для отправки запроса на удаление товара
+    async function removeFromCart(productId, removeUrl) {
+        console.log(`=== ПОПЫТКА УДАЛИТЬ ТОВАР ${productId} ===`);
+
+        try {
+            const response = await fetch(removeUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    product_id: productId,
+                    quantity: 1
+                })
+            });
+
+            if (response.ok) {
+                const result = await response.json();
+                console.log('Товар успешно удален:', result);
+
+                // Обновляем счетчик
+                const index = cards.findIndex(card => card.id === productId);
+                if (index !== -1) {
+                    counters[index] = result.quantity;
+                    console.log(`Счетчик товара ${productId} обновлен: ${counters[index]}`);
+                }
+
+                updateCartDisplay(result.cart_total);
+                await renderCards();
+            } else {
+                console.error('Ошибка при удалении товара');
+            }
+        } catch (error) {
+            console.error('Ошибка сети:', error);
+        }
+    }
+
+    // Функция для отрисовки карточек
+    async function renderCards() {
+        console.log('Отрисовка карточек...');
+
+        const cardsWrapper = document.getElementById('cardsWrapper');
+        const carouselDots = document.getElementById('carouselDots');
+
+        if (!cardsWrapper) {
+            console.error('Элемент cardsWrapper не найден!');
+            return;
+        }
+
+        cardsWrapper.innerHTML = '';
+        carouselDots.innerHTML = '';
+
+        // Создаем карточки
+        for (let index = 0; index < cards.length; index++) {
+            const card = cards[index];
+            const cardElement = document.createElement('div');
+            cardElement.className = 'card';
+
+            const deliveryText = await getDeliveryTextWithMainPizza(card.price, card.id);
+
+            cardElement.innerHTML = `
+                <img src="${card.image}" alt="${card.title}" class="card-image">
+                <div class="card-title">${card.title}</div>
+                <div class="card-price">${card.price} ₽</div>
+                <div class="card-delivery">${deliveryText}</div>
+                <button class="add-button" data-product-id="${card.id}" data-add-url="${card.add_url}">+</button>
+                ${counters[index] > 0 ? `
+                    <button class="remove-button" data-product-id="${card.id}" data-remove-url="${card.remove_url}">-</button>
+                    <div class="counter">${counters[index]}</div>
+                ` : ''}
+            `;
+
+            cardsWrapper.appendChild(cardElement);
+        }
+
+        // Добавляем точки для навигации
+        for (let i = 0; i < cards.length; i++) {
+            const dot = document.createElement('div');
+            dot.className = `carousel-dot ${i === currentCardIndex ? 'active' : ''}`;
+            dot.dataset.index = i;
+            carouselDots.appendChild(dot);
+
+            dot.addEventListener('click', () => {
+                currentCardIndex = i;
+                updateCarousel();
+            });
+        }
+
+        updateCarousel();
+        console.log('Карточки отрисованы');
+
+        // Добавляем обработчики для кнопок
+        document.querySelectorAll('.add-button').forEach(button => {
+            button.addEventListener('click', function() {
+                const productId = parseInt(this.dataset.productId);
+                const addUrl = this.dataset.addUrl;
+                addToCart(productId, addUrl);
+            });
+        });
+
+        document.querySelectorAll('.remove-button').forEach(button => {
+            button.addEventListener('click', function() {
+                const productId = parseInt(this.dataset.productId);
+                const removeUrl = this.dataset.removeUrl;
+                removeFromCart(productId, removeUrl);
+            });
+        });
+    }
+
+    // Функция для обновления карусели
+    function updateCarousel() {
+        const cardsWrapper = document.getElementById('cardsWrapper');
+        const dots = document.querySelectorAll('.carousel-dot');
+
+        if (cardsWrapper) {
+            cardsWrapper.style.transform = `translateX(-${currentCardIndex * 100}%)`;
+        }
+
+        dots.forEach((dot, index) => {
+            dot.classList.toggle('active', index === currentCardIndex);
+        });
+    }
+
+    // Инициализация при загрузке страницы
+    document.addEventListener('DOMContentLoaded', function() {
+        console.log('=== ИНИЦИАЛИЗАЦИЯ СТРАНИЦЫ ===');
+        renderCards();
+        fetchCartTotal();
+
+        // Обработчики для клавиатуры
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowLeft') {
+                currentCardIndex = (currentCardIndex - 1 + cards.length) % cards.length;
+                updateCarousel();
+            } else if (e.key === 'ArrowRight') {
+                currentCardIndex = (currentCardIndex + 1) % cards.length;
+                updateCarousel();
+            }
+        });
+    });
+</script>

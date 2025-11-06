@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h2>Додо Пицца</h2>
+<div class="products-grid" style="display: flex;">
+    {% for product in products %}
+    <div class="product-item">
+        <img src="{{ product.image_url }}" alt="{{ product.title }}">
+        <h4>{{ product.title }}</h4>
+        <span class="price">{{ product.price }}</span>
+    </div>
+
+    {# Разрыв каждые 4 товара #}
+    {% if loop.index is divisibleby 4 and not loop.last %}
+    <div class="row-break"></div>
+    {% endif %}
+    {% endfor %}
+</div>
+<article data-testid="menu__meta-product_000d3a39d824a82e11e9a18231161f84" class="sc-1gfzx1o-4 jWhSuw"><div class="sc-1gfzx1o-0 daUkAo"><div  class="sc-1nf33xi-0 dKwxVy product-image__picture"><source data-srcset="https://media.dodostatic.net/image/r:233x233/0198bf57bc517218ab93c762f4b0193e.avif 233w,https://media.dodostatic.net/image/r:292x292/0198bf57bc517218ab93c762f4b0193e.avif 292w,https://media.dodostatic.net/image/r:584x584/0198bf57bc517218ab93c762f4b0193e.avif 584w" sizes="(max-width: 1490px) 233px, 292px" type="image/avif" srcset="https://media.dodostatic.net/image/r:233x233/0198bf57bc517218ab93c762f4b0193e.avif 233w,https://media.dodostatic.net/image/r:292x292/0198bf57bc517218ab93c762f4b0193e.avif 292w,https://media.dodostatic.net/image/r:584x584/0198bf57bc517218ab93c762f4b0193e.avif 584w"><source data-srcset="https://media.dodostatic.net/image/r:233x233/0198bf57bc517218ab93c762f4b0193e.webp 233w,https://media.dodostatic.net/image/r:292x292/0198bf57bc517218ab93c762f4b0193e.webp 292w,https://media.dodostatic.net/image/r:584x584/0198bf57bc517218ab93c762f4b0193e.webp 584w" sizes="(max-width: 1490px) 233px, 292px" type="image/webp" srcset="https://media.dodostatic.net/image/r:233x233/0198bf57bc517218ab93c762f4b0193e.webp 233w,https://media.dodostatic.net/image/r:292x292/0198bf57bc517218ab93c762f4b0193e.webp 292w,https://media.dodostatic.net/image/r:584x584/0198bf57bc517218ab93c762f4b0193e.webp 584w"><source data-srcset="https://media.dodostatic.net/image/r:233x233/0198bf57bc517218ab93c762f4b0193e.png 233w,https://media.dodostatic.net/image/r:292x292/0198bf57bc517218ab93c762f4b0193e.png 292w,https://media.dodostatic.net/image/r:584x584/0198bf57bc517218ab93c762f4b0193e.png 584w" sizes="(max-width: 1490px) 233px, 292px" type="image/png" srcset="https://media.dodostatic.net/image/r:233x233/0198bf57bc517218ab93c762f4b0193e.png 233w,https://media.dodostatic.net/image/r:292x292/0198bf57bc517218ab93c762f4b0193e.png 292w,https://media.dodostatic.net/image/r:584x584/0198bf57bc517218ab93c762f4b0193e.png 584w"><img alt="Пепперони фреш" title="Пепперони фреш" class="img lazy loaded" data-src="https://media.dodostatic.net/image/r:292x292/0198bf57bc517218ab93c762f4b0193e.jpg" sizes="(max-width: 1490px) 233px, 292px" crossorigin="anonymous" src="https://media.dodostatic.net/image/r:292x292/0198bf57bc517218ab93c762f4b0193e.jpg" data-ll-status="loaded"></picture></div></div><div data-gtm-id="product-title" class="sc-1gfzx1o-2 jZKWIK"><a href="/moscow/ostankino/product/pepperoni-tomat" class="sc-77undf-0 jvGpvN"><span class="sc-77undf-1 iZmVPG">Пепперони фреш</span> </a></div>Выходные подъехали вместе с горячей пиццей по очень приятной цене</div><footer class="sc-1gfzx1o-3 dQqucP"><div class="product-control-price"><span class="money "><span class="money__value">от 289</span> <span class="money__currency money__currency_on-the-right">₽</span></span></div><button data-testid="product__button" type="button" data-type="secondary" data-size="medium" data-loading="false" class="sc-18x94tv-0 ejgIaN product-control"><svg xmlns="http://www.w3.org/2000/svg" fill="none" class="button-spinner" viewBox="0 0 24 24"><path fill="#FF6900" fill-rule="evenodd" d="M12 18a6 6 0 0 0 .86-11.94 1 1 0 0 1 .28-1.98 8 8 0 1 1-9.06 9.06 1 1 0 0 1 1.98-.28A6 6 0 0 0 12 18" clip-rule="evenodd"></path></svg>Выбрать</button></footer></article>
+</body>
+</html>

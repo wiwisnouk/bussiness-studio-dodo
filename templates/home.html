@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Додо Пицца</title>
+    <style>
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .product-item {
+            background: white;
+            border-radius: 16px;
+            padding: 16px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: center;
+        }
+
+        .product-item:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 200px;
+            object-fit: contain;
+            border-radius: 12px;
+            margin-bottom: 12px;
+        }
+
+        .product-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin: 12px 0 8px;
+            color: #1a1a1a;
+        }
+
+        .product-description {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 16px;
+            line-height: 1.4;
+        }
+
+        .product-price {
+            font-size: 20px;
+            font-weight: 700;
+            color: #ff6900;
+            margin-bottom: 16px;
+        }
+
+        .product-button {
+            background: #ff6900;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            width: 100%;
+        }
+
+        .product-button:hover {
+            background: #e55e00;
+        }
+    </style>
+</head>
+<body>
+<div class="logo_dodo" style="display: flex; align-items: center; gap: 10px;">
+
+    <h1 style="font-family: Inter, system-ui, sans-serif; font-size: 30px; line-height: 28px; font-weight: 700;">
+        <img
+                src="https://png.klev.club/uploads/posts/2024-04/png-klev-club-6kxo-p-logotip-dodo-pitstsa-png-12.png"
+                alt="Логотип Додо"
+                width="50"
+                style="vertical-align: middle;"
+        >
+        Додо Пицца
+    </h1>
+
+    <p style="font-family: Inter, system-ui, sans-serif; font-size: 12px; color: #666; margin-top: 5px; position: relative; left: -190px">
+        <br><br><br><br>Сеть №1 в России<br>
+    </p>
+
+    <p style="font-family: Inter, system-ui, sans-serif; font-size: 12px; color: #666; margin-top: 5px; color: #FF5D01; position: relative; left: -303px">
+        <br><br><br><br><br><br>по &nbsp;количеству пиццерий
+    </p>
+
+</div>
+
+    <div class="products-grid">
+        {% for product in products %}
+        <div class="product-item">
+            <!-- Modern picture element with multiple formats -->
+            <picture>
+                <!-- AVIF format (best compression) -->
+                <source
+                    srcset="{{ product.image_url_avif }}"
+                    type="image/avif">
+                <!-- WebP format (good compression) -->
+                <source
+                    srcset="{{ product.image_url_webp }}"
+                    type="image/webp">
+                <!-- Fallback for old browsers -->
+                <img
+                    src="{{ product.image_url }}"
+                    alt="{{ product.title }}"
+                    class="product-image"
+                    loading="lazy"
+                    width="280"
+                    height="200">
+            </picture>
+
+            <h3 class="product-title">{{ product.title }}</h3>
+
+            {% if product.description %}
+            <p class="product-description">{{ product.description }}</p>
+            {% endif %}
+
+            <div class="product-price">{{ product.price }} ₽</div>
+
+            <a href="/home/{{ product.id }}" class="product-button">
+                Выбрать
+            </a>
+
+        </div>
+        {% endfor %}
+    </div>
+
+    <script>
+        function addToCart(productId) {
+            // Ваша логика добавления в корзину
+            console.log('Добавлен товар:', productId);
+        }
+    </script>
+</body>
+</html>
