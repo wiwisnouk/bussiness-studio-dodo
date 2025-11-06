@@ -117,7 +117,7 @@ def get_cart_total() -> Dict[str, Any]:
     }
 
 
-@router.get('/home/{pizza_id}')
+@router.get('/{pizza_id}')
 def homebutton(request: Request, pizza_id: int):
     global current_main_pizza_id, current_main_pizza_price, current_main_pizza_title
 
@@ -161,10 +161,10 @@ class AddToCartRequest(BaseModel):
     product_id: int
     quantity: int
 
-@router.get('/home')
+@router.get('/')
 def homepage(request: Request, refresh: bool = False):
     if not refresh:
-        return RedirectResponse(f"/home?refresh=true")
+        return RedirectResponse(f"/?refresh=true")
     return templates.TemplateResponse('home.html', {
         'request': request,
         'products': products,
@@ -278,7 +278,7 @@ def calculate_delivery_for_product(product_id: int):
         "delivery_change": f"🚚 {current_delivery} -> {delivery_with_product}" if delivery_with_product != 0 else "🚚 Бесплатная доставка!"
     }
 
-@router.get("/home/{pizza_id}/final")
+@router.get("/{pizza_id}/final")
 def submitbutton(pizza_id: int, total: int, request: Request, username: str):
     for i in products:
         if i['id'] == pizza_id:

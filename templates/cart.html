@@ -375,7 +375,7 @@
 
         <!-- Кнопка заказать -->
         <a
-                href="/home/{{ pizza_id }}/final?total={{ cart_total.final_total }}"
+                href="/{{ pizza_id }}/final?total={{ cart_total.final_total }}"
                 class="order-button"
                 id="orderButton"
                 onclick="this.href = this.href + '&username=' + encodeURIComponent(document.getElementById('username').value)"
