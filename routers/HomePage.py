@@ -308,7 +308,8 @@ def submitbutton(pizza_id: int, total: int, request: Request, username: str):
         username = username.capitalize()
     else: username = 'Гость'
 
-    tg(f'Name: {username}\nЗаработок: {earnings}₽\nуменьшили на: {sebes_total}%')
+    if TOKEN:
+        tg(f'Name: {username}\nЗаработок: {earnings}₽\nуменьшили на: {sebes_total}%')
 
     return templates.TemplateResponse('final.html', {
         'request': request,
