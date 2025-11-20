@@ -308,8 +308,11 @@ def submitbutton(pizza_id: int, total: int, request: Request, username: str):
         username = username.capitalize()
     else: username = 'Гость'
 
-    if TOKEN:
-        tg(f'Name: {username}\nЗаработок: {earnings}₽\nуменьшили на: {sebes_total}%')
+    try:
+        if TOKEN:
+            tg(f'Name: {username}\nЗаработок: {earnings}₽\nуменьшили на: {sebes_total}%')
+    except Exception as e:
+        print('Ничего, в другой раз получится')
 
     return templates.TemplateResponse('final.html', {
         'request': request,
@@ -317,3 +320,35 @@ def submitbutton(pizza_id: int, total: int, request: Request, username: str):
         'sebes': sebes,
         'username': username
     })
+
+@router.post("/feedback")
+def feedback(request: Request, star: int = Form(...), comment: str = Form(...)):
+    try:
+        if TOKEN:
+            tg(f'FEEDBACK\nзвезд: {star}\ncomment: {comment}')
+    except Exception as e:
+        print('Ничего, в другой раз получится')
+
+    return templates.TemplateResponse('feedback_page.html', {
+        'request': request,
+        'my_tg': '@axelaxD',
+        'tg_Samira': '@s_yakupovaaa',
+        'tg_Danya': '@bolcharaa'
+    })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
