@@ -17,11 +17,18 @@ import telebot
 load_dotenv()
 
 TOKEN = os.getenv("TOKEN_TG")
+TOKEN_REVIEWS = os.getenv("TOKEN_TG_REVIEWS")
 
 def tg(text: str):
     chat_id = '578552563'
     text_to_send = f'{text}'
     bot = telebot.TeleBot(TOKEN)
+    bot.send_message(chat_id, text_to_send)
+
+def tg_reviews(text: str):
+    chat_id = '578552563'
+    text_to_send = f'{text}'
+    bot = telebot.TeleBot(TOKEN_REVIEWS)
     bot.send_message(chat_id, text_to_send)
 
 templates = Jinja2Templates(os.path.join(BASE_DIR, 'templates'))
@@ -310,7 +317,7 @@ def submitbutton(pizza_id: int, total: int, request: Request, username: str):
 
     try:
         if TOKEN:
-            tg(f'Name: {username}\nЗаработок: {earnings}₽\nуменьшили на: {sebes_total}%')
+            tg(f'Name: {username}\nТовар пикнул: {pizza_id}\nЗаработок: {earnings}₽\nуменьшили на: {sebes_total}%')
     except Exception as e:
         print('Ничего, в другой раз получится')
 
@@ -324,8 +331,8 @@ def submitbutton(pizza_id: int, total: int, request: Request, username: str):
 @router.post("/feedback")
 def feedback(request: Request, star: int = Form(...), comment: str = Form(...)):
     try:
-        if TOKEN:
-            tg(f'FEEDBACK\nзвезд: {star}\ncomment: {comment}')
+        if TOKEN_REVIEWS:
+            tg_reviews(f'FEEDBACK\nзвезд: {star}\ncomment: {comment}')
     except Exception as e:
         print('Ничего, в другой раз получится')
 
