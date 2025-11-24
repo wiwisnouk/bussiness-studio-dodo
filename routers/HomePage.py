@@ -339,14 +339,14 @@ def feedback(
 ):
     try:
         if TOKEN_REVIEWS:
-            if platform == 'app': platform = 'Mobile App'
-            else: platform = 'Website'
+            if platform == 'app': platform = '📱'
+            else: platform = '💻'
 
-            if personalization == 'yes': personalization_emoji = 'Yes'
-            elif personalization == 'no': personalization_emoji = 'No'
-            else: personalization_emoji = 'Not Sure'
+            if personalization == 'yes': personalization_emoji = '✅'
+            elif personalization == 'no': personalization_emoji = '❌'
+            else: personalization_emoji = '🤔'
 
-            tg_reviews(f'FEEDBACK\nзвезд: {star}\nPlatform: {platform}\nХотел ли бы видеть "Добавить к заказу": {personalization_emoji}\ncomment: {comment}')
+            tg_reviews(f'FEEDBACK\nзвезд: {star}🌟\nPlatform: {platform}\nХотел ли бы видеть "Добавить к заказу": {personalization_emoji}\ncomment: {comment}')
 
     except Exception as e:
         print('Ничего, в другой раз получится')
