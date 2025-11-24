@@ -1,9 +1,14 @@
 from fastapi import FastAPI, HTTPException, Form
 from routers import HomePage
+from datetime import datetime
 
 app = FastAPI()
 
 app.include_router(HomePage.router)
+
+@app.get("/health")
+async def health_check():
+    return {"status": "healthy", "timestamp": datetime.utcnow()}
 
 if __name__ == "__main__":
     import uvicorn
