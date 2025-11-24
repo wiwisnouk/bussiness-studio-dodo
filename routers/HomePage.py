@@ -290,6 +290,7 @@ def submitbutton(pizza_id: int, total: int, request: Request, username: str):
     for i in products:
         if i['id'] == pizza_id:
             price_before = i['price']
+            product_title = i['title']
     print('Цена до:', price_before)
     print("Итоговый прайс:", final_total)
     delivery_before = calculate_delivery(price_before)
@@ -317,7 +318,7 @@ def submitbutton(pizza_id: int, total: int, request: Request, username: str):
 
     try:
         if TOKEN:
-            tg(f'Name: {username}\nТовар пикнул: {pizza_id}\nЗаработок: {earnings}₽\nуменьшили на: {sebes_total}%')
+            tg(f'Name: {username}\nВыбрал товар: {product_title}\nЗаработок: {earnings} ({price_before} -> {final_total})\nуменьшили на: {sebes_total}%')
     except Exception as e:
         print('Ничего, в другой раз получится')
 
@@ -345,7 +346,7 @@ def feedback(
             elif personalization == 'no': personalization_emoji = '❌'
             else: personalization_emoji = '🤔'
 
-            tg_reviews(f'FEEDBACK\nзвезд: {star}🌟\nPlatform: {platform}\nХотел ли бы видеть "Для Вас": {personalization_emoji}\ncomment: {comment}')
+            tg_reviews(f'FEEDBACK\nзвезд: {star}🌟\nPlatform: {platform}\nХотел ли бы видеть "Добавить к заказу": {personalization_emoji}\ncomment: {comment}')
 
     except Exception as e:
         print('Ничего, в другой раз получится')

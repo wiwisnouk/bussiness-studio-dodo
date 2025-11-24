@@ -43,5 +43,32 @@
     "image_url": "https://media.dodostatic.net/image/r:292x292/01995435a26474a9bf94efc246815451.jpg",
     "image_url_avif": "https://media.dodostatic.net/image/r:233x233/01995435a26474a9bf94efc246815451.avif",
     "image_url_webp": "https://media.dodostatic.net/image/r:233x233/01995435a26474a9bf94efc246815451.webp"
+  },
+  {
+    "id": 6,
+    "title": "3 пиццы",
+    "price": 989,
+    "description": "Любые вкусы. Любые размеры. Соберите свою тройку, как вы любите. Цена зависит от выбора.",
+    "image_url": "https://media.dodostatic.net/image/r:292x292/0195960cdb9079b38dd908001994d5dc.jpg",
+    "image_url_avif": "https://media.dodostatic.net/image/r:233x233/0195960cdb9079b38dd908001994d5dc.avif",
+    "image_url_webp": "https://media.dodostatic.net/image/r:233x233/0195960cdb9079b38dd908001994d5dc.webp"
+  },
+  {
+    "id": 7,
+    "title": "Завтрак на двоих",
+    "price": 499,
+    "description": "Завтрак на двоих. Горячий завтрак для двоих. 2 закуски из подборки и 2 напитка на выбор",
+    "image_url": "https://media.dodostatic.net/image/r:292x292/0195961e5fa872078ea9ad5524ba05d4.jpg",
+    "image_url_avif": "https://media.dodostatic.net/image/r:233x233/0195961e5fa872078ea9ad5524ba05d4.avif",
+    "image_url_webp": "https://media.dodostatic.net/image/r:233x233/0195961e5fa872078ea9ad5524ba05d4.webp"
+  },
+  {
+    "id": 8,
+    "title": "Чикен бокс",
+    "price": 320,
+    "description": "Картошка без курицы, как курица без картошки — лучше вместе. Выбирайте куриные наггетсы и другое",
+    "image_url": "https://media.dodostatic.net/image/r:292x292/019570d1cf4972f59b57ab333237e745.jpg",
+    "image_url_avif": "https://media.dodostatic.net/image/r:233x233/019570d1cf4972f59b57ab333237e745.avif",
+    "image_url_webp": "https://media.dodostatic.net/image/r:233x233/019570d1cf4972f59b57ab333237e745.webp"
   }
 ]
