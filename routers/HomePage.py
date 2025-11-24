@@ -329,10 +329,24 @@ def submitbutton(pizza_id: int, total: int, request: Request, username: str):
     })
 
 @router.post("/feedback")
-def feedback(request: Request, star: int = Form(...), comment: str = Form(...)):
+def feedback(
+        request: Request,
+        star: int = Form(...),
+        comment: str = Form(...),
+        platform: str = Form(...),
+        personalization: str = Form(...)
+):
     try:
         if TOKEN_REVIEWS:
-            tg_reviews(f'FEEDBACK\nзвезд: {star}\ncomment: {comment}')
+            if platform == 'app': platform = '📱'
+            else: platform = '💻'
+
+            if personalization == 'yes': personalization_emoji = '✅'
+            elif personalization == 'no': personalization_emoji = '❌'
+            else: personalization_emoji = '🤔'
+
+            tg_reviews(f'FEEDBACK\nзвезд: {star}🌟\nPlatform: {platform}\nХотел ли бы видеть "Для Вас": {personalization_emoji}\ncomment: {comment}')
+
     except Exception as e:
         print('Ничего, в другой раз получится')
 
@@ -342,20 +356,3 @@ def feedback(request: Request, star: int = Form(...), comment: str = Form(...)):
         'tg_Samira': '@s_yakupovaaa',
         'tg_Danya': '@bolcharaa'
     })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

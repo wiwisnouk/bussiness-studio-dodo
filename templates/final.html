@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Оцените нашу инициативу</title>
+    <title>Оцените насколько вам было удобно сделать заказ</title>
     <style>
         * {
             margin: 0;
@@ -74,6 +74,83 @@
             min-height: 27px;
         }
 
+        .survey-section {
+            margin: 30px 0;
+            text-align: left;
+        }
+
+        .survey-title {
+            font-size: 18px;
+            color: #333;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        .survey-options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .survey-option {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px;
+            border: 2px solid #eee;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .survey-option:hover {
+            border-color: #667eea;
+            background-color: #f8f9ff;
+        }
+
+        .survey-option.selected {
+            border-color: #667eea;
+            background-color: #f0f4ff;
+        }
+
+        .survey-option input[type="radio"] {
+            display: none;
+        }
+
+        .custom-radio {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #ddd;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .custom-radio::after {
+            content: '';
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: #667eea;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .survey-option input[type="radio"]:checked + .custom-radio {
+            border-color: #667eea;
+        }
+
+        .survey-option input[type="radio"]:checked + .custom-radio::after {
+            opacity: 1;
+        }
+
+        .option-text {
+            font-size: 16px;
+            color: #333;
+        }
+
         textarea {
             width: 100%;
             height: 120px;
@@ -124,7 +201,7 @@
 </head>
 <body>
     <div class="feedback-container">
-        <h1>Оцените нашу инициативу!</h1>
+        <h1>Насколько вам было удобно сделать заказ?</h1>
         <p class="subtitle">Ваше мнение поможет нам стать лучше</p>
 
         <div class="stars-container" id="starsContainer">
@@ -136,6 +213,45 @@
         </div>
 
         <form action="/feedback" method="post">
+            <!-- Опрос 1: Чем вы пользуетесь при заказе пиццы -->
+            <div class="survey-section">
+                <div class="survey-title">Чем вы чаще пользуетесь при заказе пиццы?</div>
+                <div class="survey-options" id="platformOptions">
+                    <label class="survey-option">
+                        <input type="radio" name="platform" value="website">
+                        <span class="custom-radio"></span>
+                        <span class="option-text">Сайтом</span>
+                    </label>
+                    <label class="survey-option">
+                        <input type="radio" name="platform" value="app">
+                        <span class="custom-radio"></span>
+                        <span class="option-text">Приложением</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Опрос 2: Кнопка "Для вас" -->
+            <div class="survey-section">
+                <div class="survey-title">Повлияла ли функция "Для вас" на ваш финальный заказ?</div>
+                <div class="survey-options" id="personalizationOptions">
+                    <label class="survey-option">
+                        <input type="radio" name="personalization" value="yes">
+                        <span class="custom-radio"></span>
+                        <span class="option-text">Да, это было бы полезно</span>
+                    </label>
+                    <label class="survey-option">
+                        <input type="radio" name="personalization" value="no">
+                        <span class="custom-radio"></span>
+                        <span class="option-text">Нет, не нужно</span>
+                    </label>
+                    <label class="survey-option">
+                        <input type="radio" name="personalization" value="not_sure">
+                        <span class="custom-radio"></span>
+                        <span class="option-text">Не уверен(а)</span>
+                    </label>
+                </div>
+            </div>
+
             <textarea
                 name="comment"
                 placeholder="Расскажите подробнее, что вам понравилось или что можно улучшить..."
@@ -205,6 +321,23 @@
                 star.classList.toggle('active', index < currentRating);
             });
         }
+
+        // Добавляем обработчики для опросов
+        document.querySelectorAll('.survey-option').forEach(option => {
+            option.addEventListener('click', function() {
+                const radio = this.querySelector('input[type="radio"]');
+                radio.checked = true;
+
+                // Убираем выделение у всех опций в этой группе
+                const groupName = radio.name;
+                document.querySelectorAll(`input[name="${groupName}"]`).forEach(otherRadio => {
+                    otherRadio.closest('.survey-option').classList.remove('selected');
+                });
+
+                // Добавляем выделение текущей опции
+                this.classList.add('selected');
+            });
+        });
     </script>
 </body>
 </html>
