@@ -44,6 +44,14 @@ current_main_pizza_title: str = ""
 products = load_products('information', 'data.json')
 cards = load_products('information', 'cards.json')
 
+@router.get('/')
+def homepage(request: Request, refresh: bool = False):
+    if not refresh:
+        return RedirectResponse(f"/?refresh=true")
+    return templates.TemplateResponse('home.html', {
+        'request': request,
+        'products': products,
+    })
 
 def calculate_delivery(total_price: int) -> int:
     """Рассчитывает стоимость доставки на основе общей суммы"""
@@ -167,15 +175,6 @@ def homebutton(request: Request, pizza_id: int):
 class AddToCartRequest(BaseModel):
     product_id: int
     quantity: int
-
-@router.get('/')
-def homepage(request: Request, refresh: bool = False):
-    if not refresh:
-        return RedirectResponse(f"/?refresh=true")
-    return templates.TemplateResponse('home.html', {
-        'request': request,
-        'products': products,
-    })
 
 @router.post('/api/add_to_cart/{id_card}')
 def add_to_cart(id_card: int, request: AddToCartRequest):
