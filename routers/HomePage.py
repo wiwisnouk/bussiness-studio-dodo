@@ -6,8 +6,6 @@ from pydantic import BaseModel
 import numpy as np
 from typing import Dict, Any
 
-from pydantic.v1 import BaseSettings
-
 from config import BASE_DIR
 from tools import JsonReader
 from tools.JsonReader import load_products
@@ -18,6 +16,7 @@ load_dotenv()
 
 TOKEN = os.getenv("TOKEN_TG")
 TOKEN_REVIEWS = os.getenv("TOKEN_TG_REVIEWS")
+
 
 def tg(text: str):
     chat_id = '578552563'
@@ -36,6 +35,7 @@ templates = Jinja2Templates(os.path.join(BASE_DIR, 'templates'))
 router = APIRouter()
 
 # Хранилище состояния корзины (ТОЛЬКО дополнительные товары)
+final_total: int = 0
 cart_state: Dict[int, int] = {}
 current_main_pizza_id: int = None
 current_main_pizza_price: int = 0
