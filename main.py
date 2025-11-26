@@ -11,10 +11,6 @@ app.include_router(HomePage.router)
 async def root():
     return {"status": "OK", "message": "App is running", "port": os.environ.get("PORT", "8000")}
 
-@app.get("/health")
-async def health_check():
-    return {"status": "healthy", "timestamp": datetime.utcnow()}
-
 if __name__ == "__main__":
     import uvicorn
     # ВАЖНО: Получаем порт из Railway
