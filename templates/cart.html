@@ -206,6 +206,38 @@
             background-color: #FF5D01;
         }
 
+        .carousel-arrow {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background-color: #FF5D01;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: bold;
+            border: none;
+            transition: background-color 0.3s;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 10;
+        }
+
+        .carousel-arrow:hover {
+            background-color: #e65100;
+        }
+
+        .carousel-arrow.prev {
+            left: 5px;
+        }
+
+        .carousel-arrow.next {
+            right: 5px;
+        }
+
         .logo_dodo {
             display: flex;
             align-items: center;
@@ -353,12 +385,14 @@
         </div>
 
         <div class="cards-container">
-            <div class="cards-title">Добавить к заказу</div>
+            <div class="cards-title">Добавить к заказу?</div>
 
             <div class="cards-carousel">
+                <button class="carousel-arrow prev">‹</button>
                 <div class="cards-wrapper" id="cardsWrapper">
                     <!-- Карточки будут добавлены через JavaScript -->
                 </div>
+                <button class="carousel-arrow next">›</button>
             </div>
 
             <div class="carousel-controls" id="carouselDots">
@@ -677,20 +711,34 @@
         });
     }
 
+    // Функция для перехода к следующей карточке
+    function nextCard() {
+        currentCardIndex = (currentCardIndex + 1) % cards.length;
+        updateCarousel();
+    }
+
+    // Функция для перехода к предыдущей карточке
+    function prevCard() {
+        currentCardIndex = (currentCardIndex - 1 + cards.length) % cards.length;
+        updateCarousel();
+    }
+
     // Инициализация при загрузке страницы
     document.addEventListener('DOMContentLoaded', function() {
         console.log('=== ИНИЦИАЛИЗАЦИЯ СТРАНИЦЫ ===');
         renderCards();
         fetchCartTotal();
 
+        // Добавляем обработчики для стрелок
+        document.querySelector('.carousel-arrow.prev').addEventListener('click', prevCard);
+        document.querySelector('.carousel-arrow.next').addEventListener('click', nextCard);
+
         // Обработчики для клавиатуры
         document.addEventListener('keydown', function(e) {
             if (e.key === 'ArrowLeft') {
-                currentCardIndex = (currentCardIndex - 1 + cards.length) % cards.length;
-                updateCarousel();
+                prevCard();
             } else if (e.key === 'ArrowRight') {
-                currentCardIndex = (currentCardIndex + 1) % cards.length;
-                updateCarousel();
+                nextCard();
             }
         });
     });
