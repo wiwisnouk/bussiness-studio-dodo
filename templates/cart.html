@@ -80,7 +80,7 @@
         .cards-carousel {
             position: relative;
             overflow: hidden;
-            height: 253px; /* 220px * 1.15 */
+            height: 280px; /* 220px * 1.15 */
         }
 
         .cards-wrapper {
@@ -89,7 +89,7 @@
         }
 
         .card {
-            min-width: calc(42%); /* Уменьшили ширину на 30px */
+            min-width: calc(42%);
             background: white;
             border-radius: 9.2px; /* 8px * 1.15 */
             padding: 11.5px; /* 10px * 1.15 */
@@ -134,8 +134,8 @@
             background-color: #FF5D01;
             color: white;
             border: none;
-            border-radius: 50%;
-            width: 32.2px; /* 28px * 1.15 */
+            border-radius: 6.9px; /* 6px * 1.15 - изменено с круглой на прямоугольную */
+            width: 40px; /* Увеличена ширина */
             height: 32.2px; /* 28px * 1.15 */
             display: flex;
             align-items: center;
@@ -143,6 +143,7 @@
             cursor: pointer;
             font-size: 16.1px; /* 14px * 1.15 */
             font-weight: bold;
+            z-index: 10; /* Увеличено для предотвращения перекрытия */
         }
 
         .add-button:hover {
@@ -152,19 +153,20 @@
         .remove-button {
             position: absolute;
             bottom: 11.5px; /* 10px * 1.15 */
-            right: 55.2px; /* 48px * 1.15 */
+            right: 63px; /* Сдвинуто вправо из-за увеличенной кнопки + */
             background-color: #666;
             color: white;
             border: none;
-            border-radius: 50%;
-            width: 23px; /* 20px * 1.15 */
-            height: 23px; /* 20px * 1.15 */
+            border-radius: 6.9px; /* 6px * 1.15 - изменено с круглой на прямоугольную */
+            width: 32px; /* Увеличена ширина */
+            height: 32px; /* 20px * 1.15 */
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
             font-size: 16.1px; /* 14px * 1.15 */
             font-weight: bold;
+            z-index: 10; /* Увеличено для предотвращения перекрытия */
         }
 
         .remove-button:hover {
@@ -174,17 +176,77 @@
         .counter {
             position: absolute;
             bottom: 11.5px; /* 10px * 1.15 */
-            right: 88px; /* Сдвинули вправо из-за кнопки минус */
+            right: 107px; /* Сдвинуто вправо из-за увеличенных кнопок */
             background-color: #FF5D01;
             color: white;
             border-radius: 50%;
-            width: 23px; /* 20px * 1.15 */
-            height: 23px; /* 20px * 1.15 */
+            width: 26px; /* Увеличено */
+            height: 26px; /* Увеличено */
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 11.5px; /* 10px * 1.15 */
+            font-size: 12.65px; /* 11px * 1.15 */
             font-weight: bold;
+            z-index: 10; /* Увеличено для предотвращения перекрытия */
+        }
+
+        /* Бейдж "Додо мания" */
+        .dodo-mania-badge {
+            position: absolute;
+            bottom: 11.5px; /* 10px * 1.15 */
+            left: 11.5px; /* 10px * 1.15 */
+            background-color: transparent;
+            color: #8A2BE2; /* Фиолетовый цвет */
+            border: 2px solid #8A2BE2; /* Фиолетовая обводка */
+            border-radius: 17.25px; /* 15px * 1.15 - круглые углы */
+            padding: 3.45px 8.05px; /* 3px * 1.15, 7px * 1.15 */
+            font-size: 11.5px; /* 10px * 1.15 */
+            font-weight: 600;
+            white-space: nowrap;
+            z-index: 5;
+            cursor: help;
+            transition: all 0.2s ease;
+        }
+
+        .dodo-mania-badge:hover {
+            background-color: rgba(138, 43, 226, 0.1);
+        }
+
+        /* Тулуп для бейджа */
+        .dodo-mania-tooltip {
+            position: absolute;
+            bottom: 50px; /* Позиционируем выше бейджа */
+            left: 0;
+            background-color: white;
+            border: 2px solid #8A2BE2;
+            border-radius: 9.2px; /* 8px * 1.15 */
+            padding: 11.5px; /* 10px * 1.15 */
+            width: 230px; /* Фиксированная ширина */
+            box-shadow: 0 4.6px 13.8px rgba(0, 0, 0, 0.15);
+            font-size: 12.65px; /* 11px * 1.15 */
+            line-height: 1.4;
+            color: #333;
+            z-index: 20;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .dodo-mania-badge:hover + .dodo-mania-tooltip {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .tooltip-link {
+            color: #FF5D01;
+            text-decoration: underline;
+            font-weight: 600;
+            cursor: pointer;
+            transition: color 0.2s ease;
+        }
+
+        .tooltip-link:hover {
+            color: #e65100;
         }
 
         .carousel-controls {
@@ -438,7 +500,7 @@
         },
         {
             id: 3,
-            title: "Креветки терияки",
+            title: "Креветки",
             image: "https://media.dodostatic.net/image/r:292x292/0198556badcf772484ba8ef325c9f09f.webp",
             price: 379,
             add_url: "/api/add_to_cart/3",
@@ -460,7 +522,6 @@
             add_url: "/api/add_to_cart/5",
             remove_url: "/api/remove_from_cart/5"
         }
-        // ... другие карточки
     ];
 
     const counters = Array(cards.length).fill(0);
@@ -653,6 +714,11 @@
                 <div class="card-title">${card.title}</div>
                 <div class="card-price">${card.price} ₽</div>
                 <div class="card-delivery">${deliveryText}</div>
+                <div class="dodo-mania-badge">ДодоМания</div>
+                <div class="dodo-mania-tooltip">
+                    При добавлении товара, вы автоматически участвуете в розыгрыше, вся информация тут:
+                    <span class="tooltip-link" onclick="window.open('https://dodopizza.ru/promotions', '_blank')">Тык</span>
+                </div>
                 <button class="add-button" data-product-id="${card.id}" data-add-url="${card.add_url}">+</button>
                 ${counters[index] > 0 ? `
                     <button class="remove-button" data-product-id="${card.id}" data-remove-url="${card.remove_url}">-</button>
@@ -693,6 +759,14 @@
                 const productId = parseInt(this.dataset.productId);
                 const removeUrl = this.dataset.removeUrl;
                 removeFromCart(productId, removeUrl);
+            });
+        });
+
+        // Добавляем обработчик для ссылки в тултипе
+        document.querySelectorAll('.tooltip-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.stopPropagation();
+                window.open('https://dodopizza.ru/promotions', '_blank');
             });
         });
     }
@@ -743,3 +817,5 @@
         });
     });
 </script>
+</body>
+</html>

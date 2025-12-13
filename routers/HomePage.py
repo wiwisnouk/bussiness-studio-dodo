@@ -4,7 +4,7 @@ from fastapi.templating import Jinja2Templates
 from fastapi.responses import RedirectResponse
 from pydantic import BaseModel
 import numpy as np
-from typing import Dict, Any
+from typing import Dict, Any, Optional
 
 from config import BASE_DIR
 from tools import JsonReader
@@ -332,7 +332,7 @@ def submitbutton(pizza_id: int, total: int, request: Request, username: str):
 def feedback(
         request: Request,
         star: int = Form(...),
-        comment: str = Form(...),
+        comment: Optional[str] = Form(None),
         platform: str = Form(...),
         personalization: str = Form(...)
 ):
